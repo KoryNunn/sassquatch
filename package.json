@@ -1,0 +1,12 @@
+{
+  "name": "sassquatch",
+  "version": "0.0.1",
+  "main": "./sassquatch.js",
+  "author": {
+    "name": "Kory Nunn"
+  },
+  "dependencies": {
+    "node-sass": ">=0.3.0"
+  },
+  "readme": "shhhhh..."
+}
