@@ -1,44 +1,86 @@
-var scss = require('node-sass'),
-	fs = require('fs'),
-	path = '../';
-	
+#!/usr/bin/env node
+
+var program = require('commander'),
+    scss = require('node-sass'),
+    fs = require('fs'),
+    watchPath = './',
+    outputPath = './';
+    
+
+program
+  .version('0.0.1')
+  .option('-v, --verbose', 'Verbose output')
+  .option('-o, --output [path]', 'Output Path [default ./]')
+  .option('-w, --watch [path]', 'Watch Path [default ./]')
+  .parse(process.argv);
+
+
+ if(program.watch){
+    watchPath = program.watch;
+ }
+
+ if(program.output){
+    outputPath = program.output;
+ }
+
 function hasError(error){
-	if(error){
-		console.log(error);
-		return true;
-	}
+    if(error){
+        console.log(error);
+        return true;
+    }
 }
-	
+    
 function renderSass(callback){
-	return function(filename, sass){
-		scss.render(sass.toString(), function(error, css){
-			hasError(error) || callback(filename, css);
-		});
-	};
+    return function(filename, sass){
+        log('Rendering Sass from ' + filename);
+
+        scss.render(sass.toString(), function(error, css){
+            if(!hasError(error)){
+                callback(filename, css);
+            }
+        });
+    };
 }
-	
+    
 function readSass(filename, callback){
-	fs.readFile(path + filename, function(error, scssFile){
-		hasError(error) || callback(filename, scssFile.toString());
-	});
+    log('Reading Sass from ' + filename);
+
+    fs.readFile(watchPath + filename, function(error, scssFile){
+            if(!hasError(error)){
+                callback(filename, scssFile.toString());
+            }
+    });
 }
 
-function writeCss(filename, css){	
-	fs.writeFile(path + filename.split('.').slice(0,-1).join('.') + '.css', css, function(error){
-		hasError(error);
-	});
+function writeCss(filename, css){
+    filename = filename.split('.').slice(0,-1).join('.') + '.css';
+    
+    log('Writing Css to ' + filename);
+
+    fs.writeFile(outputPath + filename, css, function(error){
+        hasError(error);
+    });
 }
 
-fs.watch(path, function(eventType, filename){
-	var ext;
+function log(message){
+    if(program.verbose){
+        console.log(message);
+    }
+}
 
-	if(eventType !== 'change'){
-		return;
-	}
+log('Watching ' + watchPath + ' for changes.');
+log('Output path is ' + outputPath);
 
-	ext = filename.split('.').pop();
+fs.watch(watchPath, function(eventType, filename){
+    var ext;
 
-	if(ext === 'scss' || ext === 'sass'){
-		readSass(filename, renderSass(writeCss));
-	}
-})
+    if(eventType !== 'change'){
+        return;
+    }
+
+    ext = filename.split('.').pop();
+
+    if(ext === 'scss' || ext === 'sass'){
+        readSass(filename, renderSass(writeCss));
+    }
+});

@@ -1,12 +1,33 @@
 {
   "name": "sassquatch",
+  "description": "A file watcher and scss compiler.",
   "version": "0.0.1",
-  "main": "./sassquatch.js",
-  "author": {
-    "name": "Kory Nunn"
+  "main": "sassquatch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KoryNunn/sassquatch"
   },
+  "bugs": "https://github.com/KoryNunn/sassquatch/issues",
   "dependencies": {
-    "node-sass": ">=0.3.0"
+    "node-sass": ">=0.3.0",
+    "commander": ">=1.1.1"
   },
-  "readme": "shhhhh..."
+  "keywords": [
+    "sass",
+    "scss",
+    "watcher",
+    "css",
+    "compile",
+    "compiler",
+    "bigfoot"
+  ],
+  "author": "Kory Nunn <knunn187@gmail.com>",
+  "contributors": [
+    "Maurice Butler <maurice.butler@gmail.com>"
+  ],
+  "license": "MIT",
+  "preferGlobal": "true",
+  "bin" : {
+    "sassquatch" : "sassquatch.js"
+  }
 }
