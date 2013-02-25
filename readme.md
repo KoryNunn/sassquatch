@@ -22,6 +22,8 @@ Options:
   
   -V, --version        output the version number
   
+  -v, --verbose        Verbose output
+  
   -o, --output [path]  Output Path [default ./]
   
   -w, --watch [path]   Watch Path [default ./]
