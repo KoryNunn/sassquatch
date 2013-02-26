@@ -1,5 +1,5 @@
 sassquatch
-========
+==========
 
 sassquatch (sass [q] watch) is a simple file watcher and compiler for SASS (.scss) files.
 
