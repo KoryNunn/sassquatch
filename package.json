@@ -1,14 +1,15 @@
 {
   "name": "sassquatch",
   "description": "A file watcher and scss compiler.",
-  "version": "0.0.3",
   "version": "0.0.4",
   "main": "sassquatch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KoryNunn/sassquatch"
+    "url": "git+https://github.com/KoryNunn/sassquatch.git"
   },
-  "bugs": "https://github.com/KoryNunn/sassquatch/issues",
+  "bugs": {
+    "url": "https://github.com/KoryNunn/sassquatch/issues"
+  },
   "dependencies": {
     "node-sass": ">=0.3.0",
     "commander": ">=1.1.1"
@@ -28,7 +29,11 @@
   ],
   "license": "MIT",
   "preferGlobal": "true",
-  "bin" : {
-    "sassquatch" : "sassquatch.js"
+  "bin": {
+    "sassquatch": "sassquatch.js"
+  },
+  "homepage": "https://github.com/KoryNunn/sassquatch#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
