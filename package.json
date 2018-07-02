@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "node-sass": ">=0.3.0",
-    "commander": ">=1.1.1"
+    "commander": ">=1.1.1",
+    "snyk": "^1.88.0"
   },
   "keywords": [
     "sass",
@@ -34,6 +35,9 @@
   },
   "homepage": "https://github.com/KoryNunn/sassquatch#readme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
